@@ -34,6 +34,7 @@ Custom property | Description
     <style include="px-datetime-picker-styles"></style>
 
     <div id="overlay" class="overlay visuallyhidden" on-tap="_processClose"></div>
+<px-button icon="px-utl:chevron-left" (px-button-tap)="onMarketDayDecrease()"></px-button>
     <px-datetime-field
       id="field"
       class="relative"
@@ -53,6 +54,7 @@ Custom property | Description
       min="[[min]]"
       max="[[max]]">
     </px-datetime-field>
+<px-button icon="px-utl:chevron-right" (px-button-tap)="onMarketDayIncrease()"></px-button>
     <div id="box" class="visuallyhidden">
       <div class="dt-container__box shadow-temporary u-mt+">
         <px-calendar-picker
@@ -253,6 +255,16 @@ Custom property | Description
       this._applyCurrentValues(!this.showButtons);
       this._close();
     },
+
+  onMarketDayIncrease() {
+    this.momentObj = this.momentObj.clone().add(1, 'days');
+  }
+
+  onMarketDayDecrease() {
+    this.momentObj = this.momentObj.clone().subtract(1, 'days');
+  }
+
+
     /**
      */
     _momentChanged: function(momentObj) {
