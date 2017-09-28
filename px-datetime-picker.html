@@ -5,6 +5,7 @@
 <link rel="import" href="../px-datetime-common/px-datetime-button-behavior.html"/>
 <link rel="import" href="../iron-a11y-keys-behavior/iron-a11y-keys-behavior.html">
 <link rel="import" href="../app-localize-behavior/app-localize-behavior.html" />
+<link rel="import" href="../px-partials/px-button/px-button.html"/>
 <link rel="import" href="css/px-datetime-picker-styles.html"/>
 
 <!--
@@ -34,7 +35,13 @@ Custom property | Description
     <style include="px-datetime-picker-styles"></style>
 
     <div id="overlay" class="overlay visuallyhidden" on-tap="_processClose"></div>
-<px-button icon="px-utl:chevron-left" (px-button-tap)="onMarketDayDecrease()"></px-button>
+    <table>
+      <tbody>
+      <tr>
+        <td>
+          <px-button icon="px-utl:chevron-left" on-tap="_onDayDecrease"></px-button>
+        </td>
+        <td>
     <px-datetime-field
       id="field"
       class="relative"
@@ -54,7 +61,13 @@ Custom property | Description
       min="[[min]]"
       max="[[max]]">
     </px-datetime-field>
-<px-button icon="px-utl:chevron-right" (px-button-tap)="onMarketDayIncrease()"></px-button>
+        </td>
+        <td>
+          <px-button icon="px-utl:chevron-right" on-tap="_onDayIncrease"></px-button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
     <div id="box" class="visuallyhidden">
       <div class="dt-container__box shadow-temporary u-mt+">
         <px-calendar-picker
@@ -256,14 +269,15 @@ Custom property | Description
       this._close();
     },
 
-  onMarketDayIncrease() {
-    this.momentObj = this.momentObj.clone().add(1, 'days');
-  }
+    _onDayIncrease: function (evt) {
+      var newMom = this.momentObj.clone().add(1, 'days');
+      this.set('momentObj', newMom);
+    },
 
-  onMarketDayDecrease() {
-    this.momentObj = this.momentObj.clone().subtract(1, 'days');
-  }
-
+    _onDayDecrease: function (evt) {
+      var newMom = this.momentObj.clone().subtract(1, 'days');
+      this.set('momentObj', newMom);
+    },
 
     /**
      */
