@@ -34,14 +34,24 @@ Custom property | Description
   <template>
     <style include="px-datetime-picker-styles"></style>
 
+    <style>
+      button {
+        vertical-align: middle;
+        display: table-cell;
+      }
+
+      px-datetime-field {
+        vertical-align: middle;
+        display: table-cell;
+      }
+    </style>
+
     <div id="overlay" class="overlay visuallyhidden" on-tap="_processClose"></div>
-    <table>
-      <tbody>
-      <tr>
-        <td>
-          <px-button icon="px-utl:chevron-left" on-tap="_onDayDecrease"></px-button>
-        </td>
-        <td>
+    <table style="margin-bottom: 0"><tbody><tr style="vertical-align: middle;"><td>
+      <button class="btn btn--bare btn--icon" style="height: auto;vertical-align: middle;display: table-cell;" on-tap="_onDayDecrease">
+        <px-icon style="--iron-icon-height:16px" icon="px-utl:chevron-left"></px-icon>
+      </button>
+    </td><td>
     <px-datetime-field
       id="field"
       class="relative"
@@ -61,13 +71,11 @@ Custom property | Description
       min="[[min]]"
       max="[[max]]">
     </px-datetime-field>
-        </td>
-        <td>
-          <px-button icon="px-utl:chevron-right" on-tap="_onDayIncrease"></px-button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+    </td><td>
+      <button class="btn btn--bare btn--icon" style="height: auto;vertical-align: middle;display: table-cell;" on-tap="_onDayIncrease">
+        <px-icon style="--iron-icon-height:16px" icon="px-utl:chevron-right"></px-icon>
+      </button>
+    </td></tr></tbody></table>
     <div id="box" class="visuallyhidden">
       <div class="dt-container__box shadow-temporary u-mt+">
         <px-calendar-picker
