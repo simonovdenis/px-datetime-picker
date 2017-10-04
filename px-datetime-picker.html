@@ -44,11 +44,21 @@ Custom property | Description
         vertical-align: middle;
         display: table-cell;
       }
+
+      .day-buttons-show-true {
+        height: auto;
+        vertical-align: middle;
+        display: table-cell;
+      }
+
+      .day-buttons-show-false {
+        display: none;
+      }
     </style>
 
     <div id="overlay" class="overlay visuallyhidden" on-tap="_processClose"></div>
     <table style="margin-bottom: 0"><tbody><tr style="vertical-align: middle;"><td>
-      <button class="btn btn--bare btn--icon" style="height: auto;vertical-align: middle;display: table-cell;" on-tap="_onDayDecrease">
+      <button id="decreaseButton" class$="btn btn--bare btn--icon day-buttons-show-[[showDayButtons]]" on-tap="_onDayDecrease">
         <px-icon style="--iron-icon-height:16px" icon="px-utl:chevron-left"></px-icon>
       </button>
     </td><td>
@@ -72,7 +82,7 @@ Custom property | Description
       max="[[max]]">
     </px-datetime-field>
     </td><td>
-      <button class="btn btn--bare btn--icon" style="height: auto;vertical-align: middle;display: table-cell;" on-tap="_onDayIncrease">
+      <button id="increaseButton" class$="btn btn--bare btn--icon day-buttons-show-[[showDayButtons]]" on-tap="_onDayIncrease">
         <px-icon style="--iron-icon-height:16px" icon="px-utl:chevron-right"></px-icon>
       </button>
     </td></tr></tbody></table>
@@ -150,6 +160,11 @@ Custom property | Description
        *
        */
       hideTime: {
+        type: Boolean,
+        value: false
+      },
+
+      showDayButtons: {
         type: Boolean,
         value: false
       },
